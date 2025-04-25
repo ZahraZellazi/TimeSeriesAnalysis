@@ -14,3 +14,10 @@ for (pkg in packages) {
     library(pkg, character.only = TRUE)
   }
 }
+# Charger le fichier avec skip pour ignorer les métadonnées
+production_electronique <- read_excel(file.choose(), skip = 10)
+production_electronique$observation_date <- as.Date(production_electronique$observation_date)
+head(production_electronique)
+str(production_electronique)
+summary(production_electronique)
+class(production_electronique)
