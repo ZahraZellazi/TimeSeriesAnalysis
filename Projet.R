@@ -1,3 +1,4 @@
+############ DATA 1 Industrial Production electronic ######################
 # Liste des packages nécessaires
 packages <- c(
   "tidyverse", "lubridate", "forecast", "tseries",
@@ -83,3 +84,7 @@ production_electronique_diff <- diff(production_electronique_ts)
 # Afficher la série différenciée
 plot(production_electronique_diff, main = "Série différenciée d'ordre 1")
 adf.test(production_electronique_diff)
+
+
+
+############ DATA 2 construction spending ######################
