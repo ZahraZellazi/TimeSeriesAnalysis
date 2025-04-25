@@ -42,3 +42,23 @@ plot(production_electronique_ts,
 zoom_production <- window(production_electronique_ts, start=c(2010, 1), end=c(2013, 12))
 # Tracer la sous-série
 plot(zoom_production,  ylab="Production", xlab="Année")
+# Résumé statistique
+summary(production_electronique_ts)
+
+# Moyenne
+mean(production_electronique_ts)
+
+# Variance
+var(production_electronique_ts)
+
+# Écart-type
+sd(production_electronique_ts)
+
+# Décomposition de la série temporelle
+decomp <- decompose(production_electronique_ts)
+
+# Afficher les composants de la décomposition
+decomp
+
+# Afficher la tendance
+decomp$trend
