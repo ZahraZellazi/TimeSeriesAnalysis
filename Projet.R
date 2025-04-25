@@ -38,3 +38,7 @@ plot(production_electronique_ts,
      main = "Production industrielle électronique (2009-2024)",
      ylab = "Index IPB53122N", xlab = "Année",
      col = "blue", lwd = 2)
+# Sélectionner une sous-série de 2010 à 2012
+zoom_production <- window(production_electronique_ts, start=c(2010, 1), end=c(2013, 12))
+# Tracer la sous-série
+plot(zoom_production,  ylab="Production", xlab="Année")
