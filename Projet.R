@@ -70,3 +70,6 @@ decomp$random
 plot(decomp)
 
 lag.plot(production_electronique_ts , lags=36)
+# Calcul de l'autocorrélation (ACF) pour observer la saisonnalité
+acf(production_electronique_ts)
+acf(production_electronique_ts, plot=F )
