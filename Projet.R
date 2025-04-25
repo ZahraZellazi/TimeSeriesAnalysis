@@ -73,3 +73,13 @@ lag.plot(production_electronique_ts , lags=36)
 # Calcul de l'autocorrélation (ACF) pour observer la saisonnalité
 acf(production_electronique_ts)
 acf(production_electronique_ts, plot=F )
+# Test de la stationnarité avec Augmented Dickey-Fuller Test (ADF)
+
+adf.test(production_electronique_ts)  # Test de Dickey-
+
+# Appliquer une différenciation d'ordre 1
+production_electronique_diff <- diff(production_electronique_ts)
+
+# Afficher la série différenciée
+plot(production_electronique_diff, main = "Série différenciée d'ordre 1")
+adf.test(production_electronique_diff)
