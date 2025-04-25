@@ -62,3 +62,11 @@ decomp
 
 # Afficher la tendance
 decomp$trend
+# Afficher la saisonnalité
+decomp$seasonal
+
+decomp$random
+
+plot(decomp)
+
+lag.plot(production_electronique_ts , lags=36)
