@@ -33,3 +33,8 @@ head(production_electronique_ts)
 # Vérifiez la série temporelle
 plot(production_electronique_ts)
 class(production_electronique_ts)
+#Visualisation 
+plot(production_electronique_ts,
+     main = "Production industrielle électronique (2009-2024)",
+     ylab = "Index IPB53122N", xlab = "Année",
+     col = "blue", lwd = 2)
