@@ -238,6 +238,14 @@ summary(modele_auto)
 residus <- residuals(modele_auto)
 stats::Box.test(residus, lag = 20, type = "Ljung-Box")
 
+checkresiduals(modele_auto)
+
+#Interpretation: 
+# ✅ p-value = 0.1432 ➔ plus grande que 0.05
+# ➡️ Donc, on accepte H0 « Les résidus ne sont pas autocorrélés => ressemblent à du bruit blanc)»
+# => le model capture la structure de la série. =>  Les résidus sont aléatoires 
+# => Il ya rien a modelisé pour la composante aléatoire 
+
 # Prévoir les 12 prochains mois
 prevision <- forecast(modele_auto, h = 12)
 
