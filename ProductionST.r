@@ -1,22 +1,20 @@
-# Projet Serie Temporelle 
-
+# Projet Série Temporelle
 
 # Liste des packages nécessaires
 packages <- c(
   "tidyverse", "lubridate", "forecast", "tseries",
   "urca", "tsibble", "feasts", "readxl", "patchwork",
-  "fable", "knitr","xts" 
+  "fable", "knitr", "xts"
 )
 
-# Boucle : installe si nécessaire, puis charge
+# Installation et chargement des packages
 for (pkg in packages) {
-  if (!require(pkg, character.only = TRUE)) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
     install.packages(pkg, dependencies = TRUE)
-    library(pkg, character.only = TRUE)
-  } else {
-    library(pkg, character.only = TRUE)
   }
+  library(pkg, character.only = TRUE)
 }
+
 
 
 # DataSet 1 : Industrial Production electronic S C1
@@ -187,24 +185,28 @@ legend("topleft", legend = c("Série", "Ajustement polynôme d'ordre 2"),
 # Il présente le coefficient de détermination R² le plus élevé, avec une valeur de 0.9638 
 
 
-# Ajustement de la composante saisonnaire 
-t <- 1:length(production_electronique_ts)  # Création du vecteur temps
+# Création du vecteur temporel
+t <- 1:length(production_electronique_ts)
 
-# Initialisation des matrices pour les termes cosinus et sinus
-Mc <- matrix(0, nrow = length(production_electronique_ts), ncol = 6)  # 6 termes cosinus
-Ms <- matrix(0, nrow = length(production_electronique_ts), ncol = 6)  # 6 termes sinus
+# Nombre de termes harmoniques (k = 3 pour éviter le surajustement)
+k <- 3
+
+# Initialisation des matrices cosinus et sinus
+Mc <- matrix(0, nrow = length(production_electronique_ts), ncol = k)
+Ms <- matrix(0, nrow = length(production_electronique_ts), ncol = k)
 
 # Remplissage des matrices avec les termes harmoniques
-for (i in 1:6) {
-  Mc[, i] <- cos(2 * pi * t * i / 12)  # Termes cosinus
-  Ms[, i] <- sin(2 * pi * t * i / 12)  # Termes sinus
+for (i in 1:k) {
+  Mc[, i] <- cos(2 * pi * t * i / 12)
+  Ms[, i] <- sin(2 * pi * t * i / 12)
 }
 
-# Construction du modèle de régression avec les termes harmoniques
-harm_model <- lm(production_electronique_ts ~ Mc + Ms)
+# Modèle de régression harmonique avec tendance linéaire
+harm_model <- lm(production_electronique_ts ~ t + Mc + Ms)
 
 # Résumé du modèle
 summary(harm_model)
+
 
 
 

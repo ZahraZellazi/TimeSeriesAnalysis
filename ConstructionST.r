@@ -121,6 +121,7 @@ adf_result <- adf.test(construction_ts)
 cat("Résultat du test ADF: \n")
 print(adf_result)
 
+
 # Si la série n'est pas stationnaire, appliquer une différenciation d'ordre 1
 construction_diff <- diff(construction_ts)
 plot(construction_diff, main = "Série différenciée d'ordre 1")
