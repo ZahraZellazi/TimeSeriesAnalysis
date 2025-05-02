@@ -147,6 +147,7 @@ summary(mm)
 
 # Lissage lm 
 temps <- time(production_electronique_ts)
+
 modele_lm <- lm(production_electronique_ts ~ temps)
 summary(modele_lm)
 
@@ -207,7 +208,16 @@ harm_model <- lm(production_electronique_ts ~ t + Mc + Ms)
 # Résumé du modèle
 summary(harm_model)
 
+# Prévision basée sur le modèle ajusté
+fitted_values <- predict(harm_model)
 
+# Affichage des résultats
+plot(t, production_electronique_ts, type = "l", col = "blue", 
+     xlab = "Temps", ylab = "Production électronique", 
+     main = "Ajustement de la régression harmonique avec tendance linéaire")
+lines(t, fitted_values, col = "red", lwd = 2)
+legend("topright", legend = c("Données observées", "Ajustement"), 
+       col = c("blue", "red"), lty = c(1, 1), lwd = c(1, 2))
 
 
 # stationnarité : 

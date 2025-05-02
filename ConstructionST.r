@@ -76,7 +76,15 @@ std_value <- sd(construction_ts)
 cat("Moyenne:", mean_value, "\n")
 cat("Variance:", var_value, "\n")
 cat("Écart-type:", std_value, "\n")
+head(construction_ts)
 
+tail(construction_ts)
+
+str(construction_ts)
+
+summary(construction_ts)
+
+class(construction_ts)
 # Étape 11 : Décomposition multiplicative
 decomp_multiplicative <- decompose(construction_ts, type = "multiplicative")
 plot(decomp_multiplicative)
@@ -140,6 +148,8 @@ Box.test(residus, lag = 20, type = "Ljung-Box")
 checkresiduals(modele_auto)
 
 # Prévision des 12 prochains mois
-prevision <- forecast(modele_auto, h = 40)
+prevision <- forecast(modele_auto, h = 12 )
 plot(prevision, main = "Prévision des dépenses de construction")
 
+prevision
+xsx
